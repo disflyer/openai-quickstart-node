@@ -31,7 +31,7 @@ export default async function (req, res) {
       messages: [{"role": "user", "content": animal }],
       temperature: 0.6,
     });
-    res.status(200).json({ result: completion.data.choices[0].text });
+    res.status(200).json({ result: completion.data.choices[0].message });
   } catch(error) {
     // Consider adjusting the error handling logic for your use case
     if (error.response) {
