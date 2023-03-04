@@ -15,11 +15,11 @@ export default async function (req, res) {
     return;
   }
 
-  const animal = req.body.animal || '';
-  if (animal.trim().length === 0) {
+  const content = req.body.content || '';
+  if (content.trim().length === 0) {
     res.status(400).json({
       error: {
-        message: "Please enter a valid animal",
+        message: "Please enter a valid content",
       }
     });
     return;
@@ -28,7 +28,7 @@ export default async function (req, res) {
   try {
     const completion = await openai.createChatCompletion({
       model: "gpt-3.5-turbo",
-      messages: [{"role": "user", "content": animal }],
+      messages: [{"role": "user", "content": mixWithContext(content) }],
       temperature: 0.6,
     });
     res.status(200).json({ result: completion.data.choices[0].message.content });
@@ -46,4 +46,9 @@ export default async function (req, res) {
       });
     }
   }
+}
+
+const mixWithContext = function(content) {
+  return `I have written a IELTS writing, can you help me correct it? This is my writing: ${content}`
+  
 }

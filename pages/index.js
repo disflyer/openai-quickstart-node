@@ -3,18 +3,17 @@ import { useState } from "react";
 import styles from "./index.module.css";
 
 export default function Home() {
-  const [animalInput, setAnimalInput] = useState("");
+  const [userInput, setUserInput] = useState("");
   const [result, setResult] = useState();
 
-  async function onSubmit(event) {
-    event.preventDefault();
+  async function onSubmit() {
     try {
       const response = await fetch("/api/generate", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ animal: animalInput }),
+        body: JSON.stringify({ content: userInput }),
       });
 
       const data = await response.json();
@@ -23,7 +22,7 @@ export default function Home() {
       }
 
       setResult(data.result);
-      setAnimalInput("");
+      setUserInput("");
     } catch(error) {
       // Consider implementing your own error handling logic here
       console.error(error);
@@ -34,23 +33,23 @@ export default function Home() {
   return (
     <div>
       <Head>
-        <title>OpenAI Quickstart</title>
-        <link rel="icon" href="/dog.png" />
+        <title>IELTS writing</title>
       </Head>
 
       <main className={styles.main}>
-        <img src="/dog.png" className={styles.icon} />
-        <h3>Name my pet</h3>
-        <form onSubmit={onSubmit}>
-          <input
-            type="text"
-            name="animal"
-            placeholder="Enter an animal"
-            value={animalInput}
-            onChange={(e) => setAnimalInput(e.target.value)}
-          />
-          <input type="submit" value="Generate names" />
-        </form>
+        <div>
+          <h3>Paste your writing</h3>
+          <form>
+            <textarea
+              type="text"
+              name="writing"
+              placeholder="Enter an writing"
+              value={userInput}
+              onChange={(e) => setUserInput(e.target.value)}
+            />
+          </form>
+        </div>
+        <input type="submit" value="revise" onClick={() => onSubmit()}/>
         <div className={styles.result}>{result}</div>
       </main>
     </div>
