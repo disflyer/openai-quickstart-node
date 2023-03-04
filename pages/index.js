@@ -37,8 +37,7 @@ export default function Home() {
       </Head>
 
       <main className={styles.main}>
-        <div>
-          <h3>Paste your writing</h3>
+          <h3>Input your problem</h3>
           <form>
             <textarea
               type="text"
@@ -48,7 +47,6 @@ export default function Home() {
               onChange={(e) => setUserInput(e.target.value)}
             />
           </form>
-        </div>
         <input type="submit" value="revise" onClick={() => onSubmit()}/>
         <div className={styles.result}>{result}</div>
       </main>
