@@ -49,6 +49,6 @@ export default async function (req, res) {
 }
 
 const mixWithContext = function(content) {
-  return `I have written a IELTS writing, can you help me find the grammatical errors in this article and give me some advice to improve my writing skill? This is my article: ${content}`
+  return `I have written a IELTS writing, can you help me find the grammatical errors in this writing with detail? This is my writing: "${content}"`
   
 }
