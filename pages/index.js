@@ -33,7 +33,7 @@ export default function Home() {
   return (
     <div>
       <Head>
-        <title>IELTS writing</title>
+        <title>ChatGPT</title>
       </Head>
 
       <main className={styles.main}>
