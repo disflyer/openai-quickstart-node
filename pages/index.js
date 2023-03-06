@@ -42,12 +42,12 @@ export default function Home() {
             <textarea
               type="text"
               name="writing"
-              placeholder="Enter an writing"
+              placeholder="Enter an problem"
               value={userInput}
               onChange={(e) => setUserInput(e.target.value)}
             />
           </form>
-        <input type="submit" value="revise" onClick={() => onSubmit()}/>
+        <input type="submit" value="submit" onClick={() => onSubmit()}/>
         <div className={styles.result}>{result}</div>
       </main>
     </div>
